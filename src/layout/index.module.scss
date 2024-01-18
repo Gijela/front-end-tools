@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  background: #f4f4f7;
+
+  .dashBoard {
+    flex: 1;
+    border-width: 1px;
+    box-shadow:
+      0 20px 25px -5px rgb(0 0 0 / 0.1),
+      0 8px 10px -6px rgb(0 0 0 / 0.1);
+    background: #fbfbfc;
+    border-radius: 16px;
+    // padding-inline: 48px;
+  }
+}
+
+.noFullScreen {
+  padding: 16px 16px 16px 0px;
+}
+
+.fullScreen {
+  padding: 16px;
+}
