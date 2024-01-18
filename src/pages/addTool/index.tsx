@@ -23,8 +23,8 @@ export default function App() {
     updateRoutesState([...routesState, newToolInfo])
 
     // 把需要添加的工具(侧边栏信息)保存到本地
-    let localToolString = localStorage.getItem('addToolInfo')
-    let localToolInfo: any[] = localToolString ? JSON.parse(localToolString) : []
+    const localToolString = localStorage.getItem('addToolInfo')
+    const localToolInfo: ConfigRoute[] = localToolString ? JSON.parse(localToolString) : []
     localStorage.setItem('addToolInfo', JSON.stringify([...localToolInfo, toolInfo]))
   }
 
