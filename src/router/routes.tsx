@@ -34,12 +34,6 @@ const routes: ConfigRoute[] = [
     icon: <HomeFilled style={{ fontSize: '20px' }} />
   },
   {
-    path: '/gpt',
-    name: 'gpt',
-    component: () => lazyLoad('https://chat.tinycms.xyz:3002/'),
-    icon: <RobotOutlined style={{ fontSize: 24 }} />
-  },
-  {
     path: '/addTool',
     name: '添加工具',
     component: lazy(() => import('../pages/addTool')),

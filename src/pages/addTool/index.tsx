@@ -2,7 +2,7 @@ import { Button, Form, Input } from 'antd'
 import { lazyLoad, ConfigRoute } from '@/router/routes'
 import { useGlobalStore } from '@/store/globalStore'
 
-type FieldType = {
+export type FieldType = {
   url: string
   name: string
   path: string
@@ -12,13 +12,20 @@ type FieldType = {
 
 export default function App() {
   const { routesState, updateRoutesState } = useGlobalStore()
+
   const onFinish = (toolInfo: FieldType) => {
+    // 更新侧边栏
     const newToolInfo: ConfigRoute = {
       path: toolInfo.path,
       name: toolInfo.name,
       component: () => lazyLoad(toolInfo.url)
     }
     updateRoutesState([...routesState, newToolInfo])
+
+    // 把需要添加的工具(侧边栏信息)保存到本地
+    let localToolString = localStorage.getItem('addToolInfo')
+    let localToolInfo: any[] = localToolString ? JSON.parse(localToolString) : []
+    localStorage.setItem('addToolInfo', JSON.stringify([...localToolInfo, toolInfo]))
   }
 
   return (
@@ -32,7 +39,13 @@ export default function App() {
       <Form.Item<FieldType>
         label="工具链接"
         name="url"
-        rules={[{ required: true, pattern: /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i, message: '请输入正确的链接~' }]}
+        rules={[
+          {
+            required: true,
+            pattern: /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i,
+            message: '请输入正确的链接~'
+          }
+        ]}
       >
         <Input placeholder="请输入您想要添加的工具网页链接~" />
       </Form.Item>
