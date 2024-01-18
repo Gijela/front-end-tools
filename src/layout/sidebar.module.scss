@@ -1,6 +1,6 @@
 .sidebar {
   width: 64px;
-  margin: 6px 6px 6px 0;
+  margin: 6px 6px 0 0;
   color: #667085;
 
   display: flex;
@@ -25,12 +25,15 @@
 .fs24 {
   font-size: 24px;
 }
+.mb10 {
+  margin-bottom: 10px;
+}
 .textCenter {
   text-align: center;
 }
 .menu {
   width: 50px;
-  height: 60px;
+  min-height: 60px;
 }
 .activeMenuBg {
   color: #3370ff;
