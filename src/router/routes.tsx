@@ -1,5 +1,5 @@
 import { lazy, LazyExoticComponent, Suspense } from 'react'
-import { BellOutlined, HomeFilled, PlusCircleFilled, RobotOutlined } from '@ant-design/icons'
+import { BellOutlined, HomeFilled, PlusCircleFilled } from '@ant-design/icons'
 import Home from '../pages/home'
 
 export interface ConfigRoute {
