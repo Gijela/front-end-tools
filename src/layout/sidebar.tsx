@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Col, Row, Tooltip } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { FileOutlined, GithubOutlined, ShrinkOutlined } from '@ant-design/icons'
@@ -6,8 +6,7 @@ import clsx from 'clsx'
 
 import { useGlobalStore } from '@/store/globalStore'
 import styles from './sidebar.module.scss'
-import { ConfigRoute } from '@/router/routes'
-import { fixedMenuInfo, getRealIndex, fixedMenuPaths, specialHoverIdxMap } from './config.tsx'
+import { ConfigRoute, fixedSideBarRoutes } from '@/router/routes'
 
 type SideBarProp = {
   updateHideSideBar: (flag: boolean) => void
@@ -19,6 +18,15 @@ type FixedMenuItemProp = {
   handleClick: () => void
   tooltipTitle: string
 }
+
+// hover 显示背景的特殊值
+const specialHoverIdxMap = {
+  default: -1, // 默认值，所有都不 hover
+  hideSide: -2, // 隐藏侧边栏
+  github: -3 // github
+}
+
+const fixedMenuPath = fixedSideBarRoutes.map((item) => item.path)
 
 export default function SideBar({ updateHideSideBar }: SideBarProp) {
   const { activeMenuIdx, handleClickMenu, routesState } = useGlobalStore()
@@ -50,12 +58,33 @@ export default function SideBar({ updateHideSideBar }: SideBarProp) {
     )
   }
 
+  // 将过滤掉的 fixMenu route 个数重新加回来
+  const getRealIndex = (idx: number) => idx + fixedSideBarRoutes.length
+
+  // 设置初始值：从 url 中获取路径判断 hoverMenuIdx, activeMenuIdx 初始值
+  useEffect(() => {
+    const pathname = window.location.pathname
+    if (pathname === '/') return
+    if (fixedMenuPath.includes(pathname)) {
+      const idx = fixedMenuPath.indexOf(pathname)
+      setHoverMenuIdx(idx)
+      handleClickMenu(idx)
+    } else {
+      const filteredRoutes = routesState.filter((item) => !fixedMenuPath.includes(item.path))
+      const index = filteredRoutes.findIndex((item) => item.path === pathname)
+      if (index !== -1) {
+        setHoverMenuIdx(getRealIndex(index))
+        handleClickMenu(getRealIndex(index))
+      }
+    }
+  }, [])
+
   return (
     <div className={styles.sidebar}>
       {/* 动态添加的功能图标 */}
       <div className={styles.activeMenu}>
         {routesState
-          .filter((item: ConfigRoute) => !fixedMenuPaths.includes(item.path))
+          .filter((item: ConfigRoute) => !fixedMenuPath.includes(item.path))
           .map((item: ConfigRoute, index: number) => (
             <Row
               key={getRealIndex(index)}
@@ -84,19 +113,19 @@ export default function SideBar({ updateHideSideBar }: SideBarProp) {
       {/* 固定功能图标 */}
       <div className={styles.fixedMenu}>
         {/* 不新开标签页 */}
-        {Object.values(fixedMenuInfo).map((menuItem, index) => (
+        {fixedSideBarRoutes.map((fixMenu, index) => (
           <Row
             key={index}
             justify={'center'}
             className={clsx(styles.menu, styles.mb10, {
-              [styles.activeMenuBg]: hoverMenuIdx === menuItem.idx || activeMenuIdx === menuItem.idx
+              [styles.activeMenuBg]: hoverMenuIdx === index || activeMenuIdx === index
             })}
-            onClick={() => handleMenuSelect(menuItem.idx, menuItem.path)}
-            onMouseEnter={() => setHoverMenuIdx(menuItem.idx)}
+            onClick={() => handleMenuSelect(index, fixMenu.path)}
+            onMouseEnter={() => setHoverMenuIdx(index)}
             onMouseLeave={() => setHoverMenuIdx(specialHoverIdxMap.default)}
           >
-            <Tooltip placement="right" title={menuItem.toolTipMsg}>
-              {menuItem.icon}
+            <Tooltip placement="right" title={fixMenu.name}>
+              {fixMenu.icon}
             </Tooltip>
           </Row>
         ))}

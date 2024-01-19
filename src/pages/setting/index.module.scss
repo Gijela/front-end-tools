@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  height: 100%;
+
+  .subMenus {
+    width: 200px;
+    padding: 16px 10px;
+    border-right: 1px solid #dfe2ea;
+  }
+  .formContainer {
+    flex: 1;
+    padding: 36px 0;
+  }
+}

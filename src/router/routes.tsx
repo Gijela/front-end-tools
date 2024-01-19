@@ -1,6 +1,7 @@
 import { lazy, LazyExoticComponent, Suspense } from 'react'
-import { BellOutlined, HomeFilled, PlusCircleFilled } from '@ant-design/icons'
-import Home from '../pages/home'
+import { HomeFilled, SettingOutlined } from '@ant-design/icons'
+import Home from '@/pages/home'
+import { settingMenuItems } from '@/pages/setting'
 
 export interface ConfigRoute {
   path: string
@@ -26,28 +27,34 @@ export const lazyLoad = (url: string) => {
   )
 }
 
+// sidebar 固定按钮 route
+export const fixedSideBarRoutes: ConfigRoute[] = [
+  {
+    path: '/setting/*',
+    name: '添加工具',
+    component: lazy(() => import('../pages/setting')),
+    icon: <SettingOutlined style={{ fontSize: 24 }} />,
+    children: settingMenuItems.map((item) => {
+      return {
+        path: `/setting/${item.key}`,
+        name: item.label,
+        component: lazy(() => import(`@/pages/setting/${item.key}.tsx`)),
+        isChild: true
+      } as ConfigRoute
+    })
+  }
+]
+
 const routes: ConfigRoute[] = [
+  ...fixedSideBarRoutes.flatMap((item) => (item.children ? [item, ...item.children] : item)),
   {
     path: '/home',
     name: '首页',
     component: Home,
     icon: <HomeFilled style={{ fontSize: '20px' }} />
-  },
-  {
-    path: '/addTool',
-    name: '添加工具',
-    component: lazy(() => import('../pages/addTool')),
-    icon: <PlusCircleFilled style={{ fontSize: 24 }} />
-  },
-  {
-    path: '/help',
-    name: '帮助',
-    component: lazy(() => import('../pages/help')),
-    icon: <BellOutlined style={{ fontSize: 24 }} />
   }
 ]
 
-//! 后续有子页面可能会用到 (/father/son)
-// export const menuRoutes: ConfigRoute[] = routes.filter((item) => !item.isNotMenu && !item.isChild)
+export const menuRoutes: ConfigRoute[] = routes.filter((item) => !item.isChild)
 
 export default routes

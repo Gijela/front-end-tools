@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import { createGlobalStore } from 'hox'
-import { fixedMenuInfo } from '@/layout/config.tsx'
-import routes, { ConfigRoute, lazyLoad } from '@/router/routes'
-import { FieldType } from '@/pages/addTool'
+import { ConfigRoute, lazyLoad, menuRoutes } from '@/router/routes'
+import { FieldType } from '@/pages/setting/AddTool'
 
 export const [useGlobalStore, getGlobalStore] = createGlobalStore(() => {
-  const [activeMenuIdx, setActiveMenuIdx] = useState<number>(0 + Object.keys(fixedMenuInfo).length)
-  const [routesState, setRoutesState] = useState<ConfigRoute[]>(routes)
+  const [activeMenuIdx, setActiveMenuIdx] = useState<number>(0)
+  const [routesState, setRoutesState] = useState<ConfigRoute[]>(menuRoutes)
 
   const handleClickMenu = (idx: number) => setActiveMenuIdx(idx)
   const updateRoutesState = (newRoutes: ConfigRoute[]) => setRoutesState(newRoutes)
