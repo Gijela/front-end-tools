@@ -1,6 +1,6 @@
 import { Menu } from 'antd'
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import { AlertOutlined, MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
+import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import clsx from 'clsx'
 import { fixedSideBarRoutes } from '@/routes'
 
