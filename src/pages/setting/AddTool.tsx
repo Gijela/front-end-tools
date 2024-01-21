@@ -1,4 +1,4 @@
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, message } from 'antd'
 import { lazyLoad, ConfigRoute } from '@/router/routes'
 import { useGlobalStore } from '@/store/globalStore'
 
@@ -18,14 +18,11 @@ export default function AddTool() {
     const newToolInfo: ConfigRoute = {
       path: toolInfo.path,
       name: toolInfo.name,
+      url: toolInfo.url,
       component: () => lazyLoad(toolInfo.url)
     }
     updateRoutesState([...routesState, newToolInfo])
-
-    // 把需要添加的工具(侧边栏信息)保存到本地
-    const localToolString = localStorage.getItem('addToolInfo')
-    const localToolInfo: ConfigRoute[] = localToolString ? JSON.parse(localToolString) : []
-    localStorage.setItem('addToolInfo', JSON.stringify([...localToolInfo, toolInfo]))
+    message.success('添加成功~')
   }
 
   return (

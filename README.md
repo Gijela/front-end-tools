@@ -1,14 +1,15 @@
 # 图床，又不仅仅是图床
-技术栈：react、react-router-dom、hox、ts、vite、
+技术栈：react18、react-router-dom 6.x、hox、ts、vite5.x
 
 ## todo
 
 p1：
 - [x] web基本布局
 - [x] 本地存储侧边栏样式和组件匹配
-- [x] 增删菜单栏 进度：80%
+- [x] 增删菜单栏
 - [ ] 图床接入 进度：0
 
 p2: 
 - [ ] 登录模块
 - [ ] 响应式布局，兼容移动端
+- [ ] 增加侧边栏工具页面添加一个图标选择器

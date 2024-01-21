@@ -7,6 +7,7 @@ export interface ConfigRoute {
   path: string
   name: string
   component: LazyExoticComponent<() => JSX.Element> | (() => JSX.Element)
+  url?: string
   icon?: JSX.Element
   isChild?: boolean // 是子页面
   isNotMenu?: boolean // 在菜单

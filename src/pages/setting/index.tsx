@@ -31,7 +31,8 @@ export default function Setting() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (window.location.pathname.split('/setting/')[1] === '*') {
+    const subPathName = window.location.pathname.split('/setting')[1]
+    if (subPathName === '/*' || subPathName === '') {
       navigate('/setting/' + settingMenuItems[0].key)
     }
   }, [])
@@ -42,7 +43,7 @@ export default function Setting() {
         <div className={styles.subMenus}>
           <Menu
             defaultSelectedKeys={[
-              window.location.pathname.split('/setting/')[1] === '*'
+              window.location.pathname === '/setting/*' || window.location.pathname === '/setting'
                 ? settingMenuItems[0].key
                 : window.location.pathname.split('/setting/')[1]
             ]}
