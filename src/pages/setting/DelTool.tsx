@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Popconfirm, Table, message } from 'antd'
 import { useGlobalStore } from '@/store/globalStore'
-import { ConfigRoute, menuRoutes } from '@/router/routes'
+import { ConfigRoute, menuRoutes } from '@/routes'
 
 type EditableTableProps = Parameters<typeof Table>[0]
 
 type ColumnTypes = Exclude<EditableTableProps['columns'], undefined>
 
-interface IDataSource extends ConfigRoute {
+export interface IDataSource extends ConfigRoute {
   key: number
 }
 
@@ -42,12 +42,17 @@ export default function DelTool() {
       dataIndex: 'name'
     },
     {
-      title: '路径',
+      title: '页面路径',
       dataIndex: 'path'
     },
     {
-      title: '地址',
-      dataIndex: 'url'
+      title: '页面地址',
+      dataIndex: 'url',
+      render: (_, record) => (
+        <a href={record.url} target="_blank">
+          {record.url}
+        </a>
+      )
     },
     {
       title: '操作',

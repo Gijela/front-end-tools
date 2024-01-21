@@ -6,7 +6,7 @@ import clsx from 'clsx'
 
 import { useGlobalStore } from '@/store/globalStore'
 import styles from './sidebar.module.scss'
-import { ConfigRoute, fixedSideBarRoutes } from '@/router/routes'
+import { ConfigRoute, fixedSideBarRoutes } from '@/routes'
 
 type SideBarProp = {
   updateHideSideBar: (flag: boolean) => void

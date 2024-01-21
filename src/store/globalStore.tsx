@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { createGlobalStore } from 'hox'
-import { ConfigRoute, lazyLoad, menuRoutes } from '@/router/routes'
+import { ConfigRoute, lazyLoad, menuRoutes } from '@/routes'
 import { FieldType } from '@/pages/setting/AddTool'
 
 export const [useGlobalStore, getGlobalStore] = createGlobalStore(() => {

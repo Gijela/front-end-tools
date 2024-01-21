@@ -1,8 +1,8 @@
 import { Menu } from 'antd'
 import { Routes, Route, useNavigate } from 'react-router-dom'
-import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
+import { AlertOutlined, MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import clsx from 'clsx'
-import { fixedSideBarRoutes } from '@/router/routes'
+import { fixedSideBarRoutes } from '@/routes'
 
 import styles from './index.module.scss'
 import { Suspense, useEffect } from 'react'
@@ -14,15 +14,15 @@ type MenuItem = {
 }
 
 export const settingMenuItems: MenuItem[] = [
-  //! 把子组件的path存放到key中，所以 key 的值必须和跳转的文件名字一样，如 addTool 对应的是 addTool.tsx
+  //! 把子组件的path存放到key中，所以 key 的值必须和跳转的组件名字一样，如 addTool 对应的是 addTool.tsx
   {
     key: 'AddTool',
-    label: '增加侧边栏工具',
+    label: '增加工具',
     icon: <PlusCircleOutlined />
   },
   {
     key: 'DelTool',
-    label: '删除侧边栏工具',
+    label: '删除工具',
     icon: <MinusCircleOutlined />
   }
 ]

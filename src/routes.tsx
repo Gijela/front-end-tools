@@ -14,8 +14,8 @@ export interface ConfigRoute {
   children?: ConfigRoute[]
 }
 
-export const Result403 = lazy(() => import('../pages/403'))
-export const Result404 = lazy(() => import('../pages/404'))
+export const Result403 = lazy(() => import('./pages/403'))
+export const Result404 = lazy(() => import('./pages/404'))
 
 const IframeTemplate = lazy(() => import('@/pages/iframeTemplate'))
 
@@ -33,7 +33,7 @@ export const fixedSideBarRoutes: ConfigRoute[] = [
   {
     path: '/setting/*',
     name: '添加工具',
-    component: lazy(() => import('../pages/setting')),
+    component: lazy(() => import('./pages/setting')),
     icon: <SettingOutlined style={{ fontSize: 24 }} />,
     children: settingMenuItems.map((item) => {
       return {

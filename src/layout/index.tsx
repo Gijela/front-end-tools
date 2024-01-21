@@ -7,7 +7,7 @@ import clsx from 'clsx'
 import styles from './index.module.scss'
 import SideBar from './sidebar'
 import { useGlobalStore } from '@/store/globalStore'
-import { Result403, Result404, ConfigRoute } from '@/router/routes'
+import { Result403, Result404, ConfigRoute } from '@/routes'
 
 export default function App() {
   const [hideSideBar, setHideSideBar] = useState<boolean>(false)
