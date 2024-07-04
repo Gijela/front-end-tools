@@ -57,7 +57,7 @@ const routes: ConfigRoute[] = [
   {
     path: '/gpt',
     name: 'GPT',
-    component: () => lazyLoad('https://chat2hub.com/'),
+    component: () => lazyLoad('https://gpt.chat2hub.com/'),
     icon: <img src="/favicon.png" style={{ width: 30, height: 30 }} />
   }
 ]
