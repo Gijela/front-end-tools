@@ -55,6 +55,12 @@ const routes: ConfigRoute[] = [
     icon: <GoogleOutlined style={{ fontSize: '20px' }} />
   },
   {
+    path: '/gpts',
+    name: 'GPTs',
+    component: () => lazyLoad('https://gpts.chat2hub.com/'),
+    icon: <img src="/favicon.png" style={{ width: 30, height: 30 }} />
+  },
+  {
     path: '/gpt',
     name: 'GPT',
     component: () => lazyLoad('https://gpt.chat2hub.com/'),
