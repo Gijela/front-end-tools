@@ -35,19 +35,19 @@ export default function AddTool() {
   const dataSource: IDataSource[] = [
     {
       key: 0,
-      name: 'gpt',
-      path: '/gpt',
-      url: 'https://chat.tinycms.xyz:3002/',
-      component: () => lazyLoad('https://chat.tinycms.xyz:3002/')
-    },
-    {
-      key: 1,
-      name: 'lemon',
-      path: '/lemon',
-      url: 'https://app-bph6guhsfgdbd8ds.z01.azurefd.net/webapp/#/home/scaffold',
-      component: () =>
-        lazyLoad('https://app-bph6guhsfgdbd8ds.z01.azurefd.net/webapp/#/home/scaffold')
+      name: '英语',
+      path: '/english-learn',
+      url: 'https://english.chat2hub.com/',
+      component: () => lazyLoad('https://english.chat2hub.com/')
     }
+    // {
+    //   key: 1,
+    //   name: 'lemon',
+    //   path: '/lemon',
+    //   url: 'https://app-bph6guhsfgdbd8ds.z01.azurefd.net/webapp/#/home/scaffold',
+    //   component: () =>
+    //     lazyLoad('https://app-bph6guhsfgdbd8ds.z01.azurefd.net/webapp/#/home/scaffold')
+    // }
   ]
 
   const handleAdd = (key: number) => {
